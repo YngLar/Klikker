@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#wrapper{
+    height: 100vh;
+    max-width: 1000px;
+    background: #aabbff;
+    margin: auto;
+    /*Grid*/
+    display: grid;
+    grid-template-columns: 100px repeat(3,1fr);
+    grid-template-rows: 70px repeat(6,1fr);
+    grid-template-areas: "h h h h"
+                         "m m m n"
+                         "m m m n"
+                         "m m m n"
+                         "m m m n"
+                         "m m m n"
+                         "f f f f";
+}
+h2{
+    text-align: center;
+}
+header{
+    grid-area: h;
+    text-align: center;
+    text-shadow: 3px 2px #3D3D3D;
+    color: #dfdfdf;
+    font-family: 'Shrikhand', cursive;
+    margin: 50;
+    padding: 50;
+    background: #002071;
+}
+nav{
+    grid-area: n;
+    background: #0d47a1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+#flex-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+#flex-container > div{
+    background-color: #f1f1f1;
+    width: 130px;
+    height: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 90px;
+    font-size: 30px;
+}
+main{
+    grid-area: m;
+    background: #F5F5F6; 
+    padding: 20px;
+}
+footer{
+    grid-area: f;
+    background: #9d9d9d;
+}
+#progBase, #progBaseY{
+    width: 100%;
+    background-color: grey;
+    margin-bottom: 20px;
+}
+#progBaseY{
+    width: 40%;
+}
+#progBar{
+    width: 1%;
+    height: 40px;
+    background-color: #0d47a1;
+}
+#progBarY{
+    width: 100%;
+    height: 30px;
+    background-color: green;
+}
+#count{
+    float: left;
+    padding-top: 10px;
+}
+#ytelse{
+    float: left;
+    padding-top: 5px;
+}
+#mal{
+    float: right;
+    padding-top: 10px;
+}
+#klikker{
+    width: 300px;
+    height: 80px;
+}
+#pause{
+    margin-left: 270px;
+    height: 80px;
+}
+#velgNyDiv{
+    display: none;
+}

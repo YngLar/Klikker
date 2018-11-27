@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+    <header>
+        <h1>Prosjekt</h1>
+    </header>
+    <nav>
+        <h2>Butikk</h2>
+        <div id="flex-container">
+            <div id="kjopBurger" onclick="if(spillPå){kjopMat(20, 10)}">
+              1<!--  <button id="kjop1Inntekt" onclick="if(spillPå){okInntekt(0.1, 100)}"><img src="https://png.pngtree.com/element_origin_min_pic/17/05/01/e9b3f7d9a98ddbd6efdc5a6667150d62.jpg" alt="+1 inntekt" width="100px"></button> -->
+            </div>
+            <div id="kjopBurger" onclick="if(spillPå){kjopMat(100, 100)}">
+                2
+            </div>
+               <!-- <button id="kjopBurger" onclick="if(spillPå){kjopMat(20, 10)}">Kjøp</button> -->
+            <div  id="kjop1Inntekt" onclick="if(spillPå){okInntekt(0.1, 10)}"> <img src="https://png.pngtree.com/element_origin_min_pic/17/05/01/e9b3f7d9a98ddbd6efdc5a6667150d62.jpg" alt="+1 inntekt" height="90px"> </div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+        </div>
+    </nav>
+
+    <main>
+        <div id="progBase">
+            <span id="count"></span>
+            <span id="mal">100 m</span>
+            <div id="progBar">
+            </div>
+        </div>
+        <div id="progBaseY">
+            <span id="countY"></span>
+            <span id="ytelse">100%</span>
+            <div id="progBarY">
+            </div>
+        </div>
+        <button id="klikker" onclick="if(spillPå){klikk(distanse, ytelse)}">Click</button>
+        <button id="pause" onclick="pause()">Pause/Start</button> <br>
+
+        På vei til: <span id="currentBy"> Fauske</span> <br>
+        Ytelse: <span id="ytelse"></span>% <br>
+        Penger: <span id="penger"></span> kr <br>
+
+        <div id="velgNyDiv">
+            <h3>Velg nytt mål</h3>
+            <button id="velgBodo" onclick="if(spillPå){velgNyttMal(besokteByer, 1)}">Bodø</button>
+            <button id="velgTrondheim" onclick="if(spillPå){velgNyttMal(besokteByer, 2)}">Trondheim</button>
+            <button id="velgOslo" onclick="if(spillPå){velgNyttMal(besokteByer, 3)}">Oslo</button>
+        </div>
+
+    </main>
+
+    <footer></footer>
+    </div>
+
+</body>
+</html>
