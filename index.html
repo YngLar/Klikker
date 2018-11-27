@@ -17,23 +17,27 @@
         <h2>Butikk</h2>
         <div id="flex-container">
             <div id="kjopBurger" onclick="if(spillPå){kjopMat(20, 10)}">
-              1<!--  <button id="kjop1Inntekt" onclick="if(spillPå){okInntekt(0.1, 100)}"><img src="https://png.pngtree.com/element_origin_min_pic/17/05/01/e9b3f7d9a98ddbd6efdc5a6667150d62.jpg" alt="+1 inntekt" width="100px"></button> -->
+                mat 20
             </div>
             <div id="kjopBurger" onclick="if(spillPå){kjopMat(100, 100)}">
-                2
+                mat 100
             </div>
-               <!-- <button id="kjopBurger" onclick="if(spillPå){kjopMat(20, 10)}">Kjøp</button> -->
+    
             <div  id="kjop1Inntekt" onclick="if(spillPå){okInntekt(0.1, 10)}"> <img src="https://png.pngtree.com/element_origin_min_pic/17/05/01/e9b3f7d9a98ddbd6efdc5a6667150d62.jpg" alt="+1 inntekt" height="90px"> </div>
             <div>4</div>
-            <div>5</div>
-            <div>6</div>
+            <div id="kjopBurger" onclick="if(spillPå){okDistansePerKlikk(100, 10)}">
+                d per klikk
+            </div>
+            <div id="kjopBurger" onclick="if(spillPå){okDistansePerSek(10, 10)}">
+                d per sek
+            </div>
         </div>
     </nav>
 
     <main>
         <div id="progBase">
             <span id="count"></span>
-            <span id="mal">100 m</span>
+            <span id="mal">1000 m</span>
             <div id="progBar">
             </div>
         </div>
@@ -45,9 +49,7 @@
         </div>
         <button id="klikker" onclick="if(spillPå){klikk(distanse, ytelse)}">Click</button>
         <button id="pause" onclick="pause()">Pause/Start</button> <br>
-
         På vei til: <span id="currentBy"> Fauske</span> <br>
-        Ytelse: <span id="ytelse"></span>% <br>
         Penger: <span id="penger"></span> kr <br>
 
         <div id="velgNyDiv">

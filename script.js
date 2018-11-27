@@ -1,11 +1,12 @@
 window.onload = spill; 
 var distanse = 0;
-var perKlikk = 1;
+var perKlikk = 10;
 var ytelse = 100;
 var penge = 0;
-var pengeSek = 0.1; 
+var pengeSek = 0.1;
+var distanseSek = 0;
 var spillPå = true;
-var distanseMal = 100;
+var distanseMal = 1000;
 var distanseMalGevinst = 200;
 var besokteByer = []
 var posisjon = [473890.072, 7464877.535]
@@ -28,6 +29,8 @@ function spill(){
     }
     penge += pengeSek;
     document.getElementById("penger").innerHTML = parseInt(penge);
+    distanse += distanseSek;
+    document.getElementById("count").innerHTML = parseFloat(distanse).toFixed(1) + " m";
     progress(distanse, distanseMal);
     progressY(ytelse);
 }
@@ -71,6 +74,22 @@ function progressY(ytelse){
 function okInntekt(i, pris){
     if(penge>=pris){
         pengeSek += i;
+        penge -= pris; 
+    }else{
+        alert("Du har ikke nok penger")
+    }
+}
+function okDistansePerKlikk(i, pris){
+    if(penge>=pris){
+        perKlikk += i;
+        penge -= pris; 
+    }else{
+        alert("Du har ikke nok penger")
+    }
+}
+function okDistansePerSek(i, pris){
+    if(penge>=pris){
+        distanseSek += i;
         penge -= pris; 
     }else{
         alert("Du har ikke nok penger")
