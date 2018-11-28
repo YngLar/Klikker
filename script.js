@@ -10,8 +10,7 @@ var distanseMal = 1000;
 var distanseMalGevinst = 200;
 var besokteByer = []
 var posisjon = [473890.072, 7464877.535]
-var byer = [[473890.072, 7464877.535],[517267.885, 7461238.273],[568584.259, 7035355.146],[596419.708, 6642958.298]]
-
+var posisjonByer = [[517267.885, 7461238.273], [568584.259, 7035355.146], [596419.708, 6642958.298]]
 
 function spill(){
     if(!spillPå){
@@ -21,11 +20,19 @@ function spill(){
         setTimeout(spill, 100);
     }
     if(distanse >= distanseMal){
+        spillPå = false;
         document.getElementById("progBar").style.width = '100%';
         alert("Du klarte det! Du får "+distanseMalGevinst+" kr")
         penge += distanseMalGevinst;
+        document.getElementById("velgBodo").innerHTML = "Bodø (" + finnDistanse(posisjon, posisjonByer[0]) + "m)";
+        document.getElementById("velgTrondheim").innerHTML = "Trondheim (" + finnDistanse(posisjon, posisjonByer[1]) + "m)";
+        document.getElementById("velgOslo").innerHTML = "Bodø (" + finnDistanse(posisjon, posisjonByer[2]) + "m)";
         document.getElementById("velgNyDiv").style.display = "inline";
         distanse = 0;
+        if(besokteByer.length == posisjonByer.length){
+            alert("Du vant!")
+            spillPå = false;
+        }
     }
     penge += pengeSek;
     document.getElementById("penger").innerHTML = parseInt(penge);
@@ -60,6 +67,7 @@ function klikk(d, y){
     }
     
 }
+
 function progress(dis, mal){
     var elem = document.getElementById("progBar");
     var percent = (dis/mal)*100;
@@ -79,6 +87,7 @@ function okInntekt(i, pris){
         alert("Du har ikke nok penger")
     }
 }
+
 function okDistansePerKlikk(i, pris){
     if(penge>=pris){
         perKlikk += i;
@@ -87,6 +96,7 @@ function okDistansePerKlikk(i, pris){
         alert("Du har ikke nok penger")
     }
 }
+
 function okDistansePerSek(i, pris){
     if(penge>=pris){
         distanseSek += i;
@@ -114,10 +124,6 @@ function kjopMat(y, pris){
 }
 
 function velgNyttMal(besokteByer, nyBy){
-    if(harBesokt(besokteByer, nyBy)){
-        alert("Du har allerede vært i denne byen")
-        return;
-    }
     
     switch(nyBy) {
         case 1:
@@ -125,18 +131,21 @@ function velgNyttMal(besokteByer, nyBy){
             distanseMalGevinst = 1000;
             document.getElementById("velgBodo").style.display = "none";
             document.getElementById("currentBy").innerHTML = " Bodø";
+            posisjon = posisjonByer[0];
             break;
         case 2:
             distanseMal = finnDistanse(posisjon, [568584.259, 7035355.146]);
-            distanseMalGevinst = 10000;
+            distanseMalGevinst = 4000;
             document.getElementById("velgTrondheim").style.display = "none";
             document.getElementById("currentBy").innerHTML = " Trondheim";
+            posisjon = posisjonByer[1];
             break;
         case 3: 
             distanseMal = finnDistanse(posisjon, [596419.708, 6642958.298]);
-            distanseMalGevinst = 100000;
+            distanseMalGevinst = 10000;
             document.getElementById("velgOslo").style.display = "none";
             document.getElementById("currentBy").innerHTML = " Oslo";
+            posisjon = posisjonByer[2];
             break;
     }
     document.getElementById("mal").innerHTML = distanseMal+ " m";
@@ -144,7 +153,8 @@ function velgNyttMal(besokteByer, nyBy){
     document.getElementById("velgNyDiv").style.display = "none";
     distanse = 0;
     document.getElementById("count").innerHTML = distanse;
-    
+    spillPå = true;
+    spill();
 }
 
 function finnDistanse(currentBy, nyBy){
