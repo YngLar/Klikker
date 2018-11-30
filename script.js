@@ -12,24 +12,25 @@ var besokteByer = []
 var posisjon = [473890.072, 7464877.535]
 var posisjonByer = [[517267.885, 7461238.273], [568584.259, 7035355.146], [596419.708, 6642958.298]]
 
-function spill(){
+function spill(){ //Denne funksjonen kjører hvert 0.1 sekund, oppdaterer distanse og penge, og sjekker om målet er nådd
     if(!spillPå){
 
     }
     else{
         setTimeout(spill, 100);
     }
-    if(distanse >= distanseMal){
+    if(distanse >= distanseMal){ //Hvis man er kommet fram
         spillPå = false;
         document.getElementById("progBar").style.width = '100%';
-        alert("Du klarte det! Du får "+distanseMalGevinst+" kr")
+        alert("Du klarte det! Du får " + distanseMalGevinst + " kr")
         penge += distanseMalGevinst;
-        document.getElementById("velgBodo").innerHTML = "Bodø (" + finnDistanse(posisjon, posisjonByer[0]) + "m)";
-        document.getElementById("velgTrondheim").innerHTML = "Trondheim (" + finnDistanse(posisjon, posisjonByer[1]) + "m)";
-        document.getElementById("velgOslo").innerHTML = "Bodø (" + finnDistanse(posisjon, posisjonByer[2]) + "m)";
-        document.getElementById("velgNyDiv").style.display = "inline";
         distanse = 0;
-        if(besokteByer.length == posisjonByer.length){
+        document.getElementById("velgBodo").innerHTML = "Bodø <br>(" + finnDistanse(posisjon, posisjonByer[0]) + "m)";
+        document.getElementById("velgTrondheim").innerHTML = "Trondheim <br>(" + finnDistanse(posisjon, posisjonByer[1]) + "m)";
+        document.getElementById("velgOslo").innerHTML = "Oslo <br>(" + finnDistanse(posisjon, posisjonByer[2]) + "m)";
+        document.getElementById("velgNyDiv").style.display = "inline";
+
+        if(besokteByer.length == posisjonByer.length){ //Om alle byer er besøkt
             alert("Du vant!")
             spillPå = false;
         }
@@ -41,6 +42,7 @@ function spill(){
     progress(distanse, distanseMal);
     progressY(ytelse);
 }
+//Setter spill på pause hvis det er på, eller setter det på om det er på pause
 function pause(){
     if(spillPå === true){
         spillPå = false;
@@ -50,16 +52,18 @@ function pause(){
         spill();
     }
 }
-
+//Hver gang det klikkes, kjøres denne funksjonen
 function klikk(d, y){
     if(y <= 0){
         alert("Du har ikke nok energi! Kjøp mat for å øke ytelse");
     }
     else{
+    // Øker distanse basert på ytelse
     var tempD = d;
     tempD += (perKlikk*((ytelse)/100));
     distanse = tempD;
     document.getElementById("count").innerHTML = parseFloat(tempD).toFixed(1) + " m";
+    // Senker ytelse
     var tempY = y;
     tempY -= 0.2;
     ytelse = parseFloat(tempY).toFixed(1);
@@ -67,18 +71,18 @@ function klikk(d, y){
     }
     
 }
-
-function progress(dis, mal){
+//Oppdaterer distanse-bar
+function progress(dis, mal){   
     var elem = document.getElementById("progBar");
     var percent = (dis/mal)*100;
     elem.style.width = percent + '%'; 
 }
+//Oppdaterer ytelse-bar
 function progressY(ytelse){
     var elem = document.getElementById("progBarY");
     elem.style.width = ytelse + '%'; 
 }
-
-
+//Øker øker antall penger tjent per sekund etter pris
 function okInntekt(i, pris){
     if(penge>=pris){
         pengeSek += i;
@@ -87,7 +91,7 @@ function okInntekt(i, pris){
         alert("Du har ikke nok penger")
     }
 }
-
+//Øker distanse per klikk etter pris
 function okDistansePerKlikk(i, pris){
     if(penge>=pris){
         perKlikk += i;
@@ -96,7 +100,7 @@ function okDistansePerKlikk(i, pris){
         alert("Du har ikke nok penger")
     }
 }
-
+//Øker distanse per sekund etter pris 
 function okDistansePerSek(i, pris){
     if(penge>=pris){
         distanseSek += i;
@@ -105,7 +109,7 @@ function okDistansePerSek(i, pris){
         alert("Du har ikke nok penger")
     }
 }
-
+//Øker ytelse etter pris 
 function kjopMat(y, pris){
     if(penge>=pris){
         if((parseFloat(ytelse)+parseFloat(y)) >= 100){
@@ -122,9 +126,8 @@ function kjopMat(y, pris){
     }
 
 }
-
+//Bytter mål etter valg, tar vekk byer som blir valgt og legger de til i arrayet "besokteByer"
 function velgNyttMal(besokteByer, nyBy){
-    
     switch(nyBy) {
         case 1:
             distanseMal = finnDistanse(posisjon, [517267.885, 7461238.273]);
@@ -156,7 +159,7 @@ function velgNyttMal(besokteByer, nyBy){
     spillPå = true;
     spill();
 }
-
+//Finner distansen mellom to koordinater 
 function finnDistanse(currentBy, nyBy){
     var x1 = currentBy[0];
     var y1 = currentBy[1];
@@ -167,7 +170,7 @@ function finnDistanse(currentBy, nyBy){
     console.log(distanse);
     return(distanse);
 }
-
+//Sjekker om en by er allerede besøkt
 function harBesokt(besokteByer, nyBy){
     var n = nyBy;
     var b = besokteByer;

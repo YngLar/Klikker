@@ -41,22 +41,34 @@
             <div id="progBar">
             </div>
         </div>
-        <div id="progBaseY">
-            <span id="countY"></span>
-            <span id="ytelse">100%</span>
-            <div id="progBarY">
+        <div id="ytelseOgPenger">
+            <div id="progBaseY">
+                <span id="countY"></span>
+                <span id="ytelse">100%</span>
+                <div id="progBarY">
+                </div>
+            </div>
+            <div id="paVeiTil">
+                På vei til: <span id="currentBy"> Fauske</span> <br>
+            </div>
+            <div id="countPenger">
+                Penger: <span id="penger"></span> kr
             </div>
         </div>
+    
+        
         <button id="klikker" onclick="if(spillPå){klikk(distanse, ytelse)}">Click</button>
         <button id="pause" onclick="pause()">Pause/Start</button> <br>
-        På vei til: <span id="currentBy"> Fauske</span> <br>
-        Penger: <span id="penger"></span> kr <br>
+        
+        
 
         <div id="velgNyDiv">
-            <h3>Velg nytt mål</h3>
-            <button id="velgBodo" onclick="velgNyttMal(besokteByer, 1)">Bodø</button>
-            <button id="velgTrondheim" onclick="velgNyttMal(besokteByer, 2)">Trondheim</button>
-            <button id="velgOslo" onclick="velgNyttMal(besokteByer, 3)">Oslo</button>
+            <h3>Velg nytt mål</h3> 
+            <div id="velgByer">
+            <div id="velgBodo" onclick="velgNyttMal(besokteByer, 1)">Bodø</div>
+            <div id="velgTrondheim" onclick="velgNyttMal(besokteByer, 2)">Trondheim</div>
+            <div id="velgOslo" onclick="velgNyttMal(besokteByer, 3)">Oslo</div>
+            </div>
         </div>
 
     </main>
